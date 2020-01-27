@@ -1,5 +1,5 @@
 class Transaction
-  
+
   attr_reader :type, :time, :amount
 
   def initialize(type, time = Time.new.strftime('%d-%m-%Y'), amount)
