@@ -1,5 +1,9 @@
 # Bank Tech Test
 
+## Overview
+
+Users are able to make transactions from their accounts. They can deposit and withdraw money from their accounts. They are able to display their balance inside the command line. They can view a number of recent transactions they have made.
+
 ## Specification
 
 ### Requirements
@@ -22,4 +26,24 @@ date || credit || debit || balance
 14/01/2012 || || 500.00 || 2500.00
 13/01/2012 || 2000.00 || || 3000.00
 10/01/2012 || 1000.00 || || 1000.00
+```
+
+## User Stories
+
+```
+As a user,
+so that I can indulge on food
+I would like to withdraw money from my account
+
+As a user,
+so that I can keep buying delicious food
+I would like to deposit money into my account
+
+As a user,
+so that I can work out how much food I can buy
+I would like to see how much balance I have in my account
+
+As a user,
+so that I can be sulk at my food expenditure
+I would like to see a number of my most recent transactions
 ```
