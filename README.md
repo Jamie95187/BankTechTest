@@ -47,3 +47,8 @@ As a user,
 so that I can be sulk at my food expenditure
 I would like to see a number of my most recent transactions
 ```
+
+## Testing
+
+Rspec for unit and feature tests.
+SimpleCov for test coverage.
