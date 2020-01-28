@@ -1,7 +1,6 @@
 class Account
 
-  def initialize(name)
-    @name = name
+  def initialize
     @balance = 0
   end
 
