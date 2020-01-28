@@ -1,8 +1,10 @@
 class TransactionHistory
 
+  attr_reader :log
+
   def initialize(account = Account.new)
     @account = account
-    @log = [['date || credit || debit || balance']]
+    @log = []
   end
 
   def add_statement(transaction)
@@ -13,9 +15,9 @@ class TransactionHistory
   def transaction_to_statement(transaction)
     if transaction.type == 'deposit'
       return transaction.time + " || #{transaction.amount}.00 || " +
-      "|| #{@account.display_balance + transaction.amount}.00"
+      "|| #{@account.display_balance}.00"
     end
     transaction.time + " || || #{transaction.amount}.00 || " +
-    "#{@account.display_balance - transaction.amount}.00"
+    "#{@account.display_balance}.00"
   end
 end

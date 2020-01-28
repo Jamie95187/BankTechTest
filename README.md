@@ -46,6 +46,10 @@ I would like to see how much balance I have in my account
 As a user,
 so that I can be sulk at my food expenditure
 I would like to see a number of my most recent transactions
+
+As a user,
+so that I won't get in trouble with my finances
+I would like to be stopped from going into an overdraft
 ```
 
 ## Testing
