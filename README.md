@@ -2,7 +2,7 @@
 
 ## Overview
 
-Users are able to make transactions from their accounts. They can deposit and withdraw money from their accounts. They are able to display their balance inside the command line. They can view a number of recent transactions they have made.
+Users are able to make transactions from their accounts. They can deposit and withdraw money from their accounts and are able to display their balance inside the command line. They can view a number of recent transactions they have made.
 
 ## Specification
 
@@ -48,7 +48,7 @@ so that I can be sulk at my food expenditure
 I would like to see a number of my most recent transactions
 
 As a user,
-so that I won't get in trouble with my finances
+so that I won't have troubles with my finances
 I would like to be stopped from going into an overdraft
 ```
 

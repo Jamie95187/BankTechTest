@@ -8,8 +8,4 @@ class Transaction
     @amount = amount
   end
 
-  # def create_transaction
-  #   [@type, @time, @amount]
-  # end
-
 end
