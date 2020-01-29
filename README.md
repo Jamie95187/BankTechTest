@@ -52,6 +52,34 @@ The system class displays the information onto the command line.
 | --- | --- |
 | system | print_recent_history |
 
+## Running the program
+
+Go to the root directory and open `irb` in terminal. Load the files into the environment. A file can be loaded as follows `require_relative 'lib/account.rb'`, make sure all 4 files are loaded. The program can be ran as follows:
+
+```
+2.6.5 :020 > account = Account.new
+ => #<Account:0x00007faed8984070 @balance=0>
+2.6.5 :021 > transaction_history = TransactionHistory.new(account)
+ => #<TransactionHistory:0x00007faed8997648 @account=#<Account:0x00007faed8984070 @balance=0>, @log=[]>
+2.6.5 :022 > transaction_deposit = Transaction.new('deposit', 1000)
+ => #<Transaction:0x00007faed89aede8 @type="deposit", @time="29/01/2020", @amount=1000>
+2.6.5 :023 > transaction_withdraw = Transaction.new('withdraw', 500)
+ => #<Transaction:0x00007faed90f9170 @type="withdraw", @time="29/01/2020", @amount=500>
+2.6.5 :024 > account.update_balance(transaction_deposit)
+ => 1000
+2.6.5 :025 > transaction_history.add_statement(transaction_deposit)
+ => "29/01/2020 || 1000.00 || || 1000.00"
+2.6.5 :026 > account.update_balance(transaction_withdraw)
+ => 500
+2.6.5 :027 > transaction_history.add_statement(transaction_withdraw)
+ => "29/01/2020 || || 500.00 || 500.00"
+2.6.5 :028 > system = System.new
+ => #<System:0x00007faed90eb3e0>
+2.6.5 :029 > system.print_statement(transaction_history)
+date || credit || debit || balance
+29/01/2020 || || 500.00 || 500.00
+29/01/2020 || 1000.00 || || 1000.00
+```
 
 ## User Stories
 
