@@ -1,5 +1,7 @@
 class Account
 
+  attr_reader :balance
+
   def initialize
     @balance = 0
   end
@@ -11,10 +13,6 @@ class Account
     raise 'Not enough balance to withdraw that amount!' unless transaction.amount <= @balance
 
     @balance -= transaction.amount
-  end
-
-  def display_balance
-    @balance
   end
 
   private

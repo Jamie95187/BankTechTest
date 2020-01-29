@@ -11,10 +11,10 @@ describe System do
     let(:time) { "01/01/2020" }
     let(:account) { Account.new }
 
-    let (:transaction_history) { TransactionHistory.new(account) }
-    let (:transaction_deposit_1000) { Transaction.new('deposit', 1000, time) }
-    let (:transaction_withdraw_500) { Transaction.new('withdraw', 500, time) }
-    let (:transaction_deposit_2000) { Transaction.new('deposit', 2000, time) }
+    let(:transaction_history) { TransactionHistory.new(account) }
+    let(:transaction_deposit_1000) { Transaction.new('deposit', 1000, time) }
+    let(:transaction_withdraw_500) { Transaction.new('withdraw', 500, time) }
+    let(:transaction_deposit_2000) { Transaction.new('deposit', 2000, time) }
 
     it('should print an empty statement when no transactions have been made') do
       expect { system.print_statement(transaction_history) }.to output("date || credit || debit || balance\n").to_stdout
