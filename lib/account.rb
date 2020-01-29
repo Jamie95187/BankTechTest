@@ -8,7 +8,7 @@ class Account
     return @balance += transaction.amount if deposit?(transaction)
 
     raise 'Not enough balance to withdraw that amount!' unless transaction.amount <= @balance
-    
+
     @balance -= transaction.amount
   end
 
