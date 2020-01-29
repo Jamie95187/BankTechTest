@@ -13,7 +13,7 @@ class TransactionHistory
   end
 
   def transaction_to_statement(transaction)
-    if transaction.type == 'deposit'
+    if transaction.action == 'deposit'
       return transaction.time + " || #{transaction.amount}.00 || " +
       "|| #{@account.display_balance}.00"
     end
