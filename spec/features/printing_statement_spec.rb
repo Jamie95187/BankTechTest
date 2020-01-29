@@ -1,13 +1,13 @@
-require 'system'
-require 'transaction'
-require 'account'
-require 'transaction_history'
+require_relative '../../lib/bank_system'
+require_relative '../../lib/transaction'
+require_relative '../../lib/account'
+require_relative '../../lib/transaction_history'
 
-describe System do
+describe BankSystem do
 
   describe '#print_statement' do
 
-    let(:system) { System.new }
+    let(:system) { BankSystem.new }
     let(:time) { "01/01/2020" }
     let(:account) { Account.new }
 

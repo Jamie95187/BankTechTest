@@ -26,7 +26,7 @@ A test coverage of 100% was maintained throughout this project, all tests should
 
 ## Approach
 
-I decided to have four classes for this project and followed the TDD pattern of **red, green, refactor**. I began by creating tests for the account class.
+I decided to have four classes for this project and followed the TDD pattern of **red, green, refactor**. I began by creating tests for the important features, which was displaying a statement in the command line. I later considered some edge cases such as a wrong action given in as an argument, for example neither 'withdraw' or 'deposit'. I made the assumption that a user will not be able to go into an overdraft and they will not be able to go into a negative balance.
 
 ## Class/Method structure
 
@@ -34,52 +34,44 @@ The account class updates the balance after transactions have been made.
 
 | Objects | Methods |
 | --- | --- |
-| account | update_balance |
+| Account | update_balance |
 | | display_balance |
 
 The transaction_history class stores the transactions that have been made.
 
 | Objects | Methods |
 | --- | --- |
-| transaction_history | add_transaction |
+| TransactionHistory | add_transaction |
 | | transaction_to_statement |
 
 The amount, time and action is held in this transaction class.
 
 | Objects | Methods |
 | --- | --- |
-| transaction | |
+| Transaction | |
 
 The system class displays the information onto the command line.
 
 | Objects | Methods |
 | --- | --- |
-| system | print_recent_history |
+| BankSystem | print_recent_history |
 
 ## Running the program
 
-Go to the root directory and open `irb` in terminal. Load the files into the environment. A file can be loaded as follows `require_relative 'lib/account.rb'`, make sure all 4 files are loaded. The program can be ran as follows:
+Go to the root directory and open `irb` in terminal. Load the files into the environment. You can load the files in by typing `irb -r './lib/bank'` at the root directory, or you can load the file in the `irb` environment by typing `require_relative './lib/bank'`. The program can be ran as follows:
 
 ```
-2.6.5 :020 > account = Account.new
- => #<Account:0x00007faed8984070 @balance=0>
-2.6.5 :021 > transaction_history = TransactionHistory.new(account)
- => #<TransactionHistory:0x00007faed8997648 @account=#<Account:0x00007faed8984070 @balance=0>, @log=[]>
-2.6.5 :022 > transaction_deposit = Transaction.new('deposit', 1000)
- => #<Transaction:0x00007faed89aede8 @type="deposit", @time="29/01/2020", @amount=1000>
-2.6.5 :023 > transaction_withdraw = Transaction.new('withdraw', 500)
- => #<Transaction:0x00007faed90f9170 @type="withdraw", @time="29/01/2020", @amount=500>
-2.6.5 :024 > account.update_balance(transaction_deposit)
- => 1000
-2.6.5 :025 > transaction_history.add_statement(transaction_deposit)
- => "29/01/2020 || 1000.00 || || 1000.00"
-2.6.5 :026 > account.update_balance(transaction_withdraw)
- => 500
-2.6.5 :027 > transaction_history.add_statement(transaction_withdraw)
- => "29/01/2020 || || 500.00 || 500.00"
-2.6.5 :028 > system = System.new
- => #<System:0x00007faed90eb3e0>
-2.6.5 :029 > system.print_statement(transaction_history)
+2.6.5 :001 > banksystem = BankSystem.new
+ => #<BankSystem:0x00007faddfa73890 @transaction_class=Transaction>
+2.6.5 :002 > account = Account.new
+ => #<Account:0x00007faddfa70410 @balance=0>
+2.6.5 :003 > transaction_history = TransactionHistory.new(account)
+ => #<TransactionHistory:0x00007faddfa639b8 @account=#<Account:0x00007faddfa70410 @balance=0>, @log=[]>
+2.6.5 :004 > banksystem.process('deposit', 1000, transaction_history)
+ => #<Transaction:0x00007faddfa5a5c0 @action="deposit", @time="29/01/2020", @amount=1000>
+2.6.5 :005 > banksystem.process('withdraw', 500, transaction_history)
+ => #<Transaction:0x00007faddfa50e30 @action="withdraw", @time="29/01/2020", @amount=500>
+2.6.5 :006 > banksystem.print_statement(transaction_history)
 date || credit || debit || balance
 29/01/2020 || || 500.00 || 500.00
 29/01/2020 || 1000.00 || || 1000.00

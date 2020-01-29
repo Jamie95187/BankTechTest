@@ -1,6 +1,6 @@
 class TransactionHistory
 
-  attr_reader :log
+  attr_reader :log, :account
 
   def initialize(account = Account.new)
     @account = account
