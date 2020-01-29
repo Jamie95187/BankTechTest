@@ -24,6 +24,10 @@ rubocop
 
 A test coverage of 100% was maintained throughout this project, all tests should be passing and there should be 0 offences when `rubocop` is ran.
 
+## Approach
+
+I decided to have four classes for this project and followed the TDD pattern of **red, green, refactor**. I began by creating tests for the account class.
+
 ## Class/Method structure
 
 The account class updates the balance after transactions have been made.
