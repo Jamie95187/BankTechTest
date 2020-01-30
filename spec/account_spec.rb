@@ -42,12 +42,12 @@ describe Account do
 
       it('should raise an error when a withdrawal is made when there is not enough balance') do
         transaction_withdrawal = instance_double("Transaction", :action => 'withdraw', :time => '01/01/2020', :amount => 1000)
-        expect { account.update_balance(transaction_withdrawal) }.to raise_error("Not enough balance to withdraw that amount!")
+        expect { account.update_balance(transaction_withdrawal) }.to raise_error("Not enough balance!")
       end
 
       it("should raise an error when the transaction is neither deposit or withdraw") do
         transaction_withdrawal = instance_double("Transaction", :action => 'BOOM', :time => '01/01/2020', :amount => 1000)
-        expect { account.update_balance(transaction_withdrawal) }.to raise_error("Invalid transaction action!")
+        expect { account.update_balance(transaction_withdrawal) }.to raise_error("Invalid action!")
       end
 
     end

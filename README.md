@@ -22,7 +22,7 @@ rspec
 rubocop
 ```
 
-A test coverage of 100% was maintained throughout this project, all tests should be passing and there should be 0 offences when `rubocop` is ran.
+A test coverage of 99%+ was maintained throughout this project, all tests should be passing and there should be 0 offences when `rubocop` is ran.
 
 ## Approach
 
