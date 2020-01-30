@@ -50,11 +50,12 @@ The amount, time and action is held in this transaction class.
 | --- | --- |
 | Transaction | |
 
-The system class displays the information onto the command line.
+The system class displays the information onto the command line. The process method takes the arguments: action 'deposit/withdraw', amount for the transaction and the transaction_history object.
 
 | Objects | Methods |
 | --- | --- |
 | BankSystem | print_recent_history |
+| | process |
 
 ## Running the program
 
