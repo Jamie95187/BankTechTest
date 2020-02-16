@@ -1,10 +1,16 @@
 class TransactionHistory
 
-  attr_reader :log, :account
+  attr_accessor :balance
+  attr_reader :log
 
-  def initialize(account = Account.new)
-    @account = account
+  def initialize
     @log = []
+    @balance = 0
+  end
+
+  def add_transaction(transaction)
+    @balance += transaction.amount
+    @log << transaction
   end
 
   def add_statement(transaction)

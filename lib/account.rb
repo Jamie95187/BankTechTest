@@ -1,18 +1,23 @@
 class Account
 
-  attr_reader :balance
-
-  def initialize
-    @balance = 0
+  def initialize(statement = Statement.new, transaction_class = Transaction)
+    @statement = statement
+    @transaction_class = transaction_class
   end
 
-  def update_balance(transaction)
-    raise ArgumentError.new 'Invalid action!' unless valid_action?(transaction)
-    return @balance += transaction.amount if deposit?(transaction)
+  # def update_balance(transaction)
+  #   raise ArgumentError.new 'Invalid action!' unless valid_action?(transaction)
+  #   return @balance += transaction.amount if deposit?(transaction)
+  #
+  #   raise ArgumentError.new 'Not enough balance!' unless transaction.amount <= @balance
+  #
+  #   @balance -= transaction.amount
+  # end
 
-    raise ArgumentError.new 'Not enough balance!' unless transaction.amount <= @balance
-
-    @balance -= transaction.amount
+  def deposit(amount)
+    transaction = @transaction_class.new('deposit', amount)
+    @transaction_history.add_transaction(transaction)
+    @transaction_history.balance
   end
 
   private
