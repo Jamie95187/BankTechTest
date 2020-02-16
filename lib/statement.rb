@@ -1,6 +1,6 @@
 class Statement
 
-  def initialize(transaction_history_class = TransactionHistory)
+  def initialize(transaction_history_class = TransactionHistory.new)
     @transaction_history_class = transaction_history_class
   end
 
