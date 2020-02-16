@@ -4,10 +4,12 @@ class Account
     @transaction_history_class = transaction_history_class
   end
 
-  def deposit(amount)
-    transaction = @transaction_history_class.new('deposit', amount)
-    @transaction_history_class.add_transaction(transaction)
-    @transaction_history_class.balance
+  def deposit(amount, time = Time.new.strftime("%d/%m/%Y"))
+    @transaction_history_class.add_transaction( { action: "deposit", amount: amount, date: time } )
+  end
+
+  def withdraw(amount, time = Time.new.strftime("%d/%m/%Y"))
+    @transaction_history_class.add_transaction( { action: "withdraw", amount: amount, date: time } )
   end
 
   private

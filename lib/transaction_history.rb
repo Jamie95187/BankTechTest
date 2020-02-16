@@ -9,7 +9,6 @@ class TransactionHistory
   end
 
   def add_transaction(transaction)
-    @balance += transaction.amount
     @log << transaction
   end
 
