@@ -1,15 +1,25 @@
 class Account
 
+  attr_reader :transaction_history_class
+
   def initialize(transaction_history_class = TransactionHistory.new)
     @transaction_history_class = transaction_history_class
   end
 
   def deposit(amount, time = Time.new.strftime("%d/%m/%Y"))
-    @transaction_history_class.add_transaction( { action: "deposit", amount: amount, date: time } )
+    @transaction_history_class.add_transaction({
+      :action => "deposit",
+      :amount => amount,
+      :date => time
+    })
   end
 
   def withdraw(amount, time = Time.new.strftime("%d/%m/%Y"))
-    @transaction_history_class.add_transaction( { action: "withdraw", amount: amount, date: time } )
+    @transaction_history_class.add_transaction({
+      :action => "withdraw",
+      :amount => amount,
+      :date => time
+    })
   end
 
   private

@@ -1,11 +1,7 @@
 class Statement
 
-  def initialize(transaction_history_class = TransactionHistory.new)
-    @transaction_history_class = transaction_history_class
-  end
-
-  def print
-    puts "date || credit || debit || balance\n" + @transaction_history_class.log.reverse.join("\n")
+  def print_statement(transaction_history)
+    print "date || credit || debit || balance\n" + transaction_history.log.join("\n")
   end
 
 end
