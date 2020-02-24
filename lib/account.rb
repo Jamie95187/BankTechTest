@@ -2,7 +2,7 @@ class Account
 
   attr_reader :transaction_history_class
 
-  def initialize(transaction_history_class = TransactionHistory.new)
+  def initialize(transaction_history_class = TransactionHistory)
     @transaction_history_class = transaction_history_class
   end
 
