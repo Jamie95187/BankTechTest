@@ -22,10 +22,4 @@ class Account
     })
   end
 
-  private
-
-  def valid_action?(transaction)
-    deposit?(transaction) || transaction.action == 'withdraw'
-  end
-
 end
