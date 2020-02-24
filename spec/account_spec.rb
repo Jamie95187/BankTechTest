@@ -2,18 +2,18 @@ require 'account'
 
 describe Account do
 
-  let(:account) { Account.new(transaction_history_class) }
-  let(:transaction_history_class) { double :transaction_history_class }
-  let(:transaction_withdraw) { double :transaction_withdraw, :[] => {:action => "deposit", :amount => 1000, :date => "01/01/2020"} }
+  let(:account) { Account.new(transaction_history) }
+  let(:transaction_history) { double :transaction_history }
+  let(:transaction_deposit) { double :transaction_deposit }
+  let(:transaction_withdraw) { double :transaction_withdraw }
+  let(:log) { double :log }
 
   describe '#deposit' do
 
     it('should return a transaction hash when a deposit of 1000 is made') do
-      # allow(transaction_withdraw).to receive(:[]).with(:action).and_return("deposit")
-      # allow(transaction_withdraw).to receive(:[]).with(:amount).and_return("1000")
-      # allow(transaction_withdraw).to receive(:[]).with(:date).and_return("01/01/2020")
-      allow(transaction_history_class).to receive(:add_transaction).with( transaction_withdraw )
-      expect(account.deposit(1000, "01/01/2020")).to eq(["01/01/2020 || || 1000.00 || 1000.00"])
+      allow(transaction_history).to receive(:add_transaction).with({ :action => "deposit", :amount => 1000, :date => "01/01/2020" }).and_return log
+      allow(transaction_history).to receive(:transaction_to_statement).with(transaction_deposit)
+      expect(account.deposit(1000, "01/01/2020")).to eq(log)
     end
 
   end
@@ -21,9 +21,12 @@ describe Account do
   describe '#withdraw' do
 
     it('should return a transaction hash when a withdrawal of 500 is made') do
-      allow(transaction_history_class).to receive(:add_transaction).with({:action => "deposit", :amount => 1000, :date => "01/01/2020"}) { ["01/01/2020 || || 1000.00 || 1000.00"] }
-      allow(transaction_history_class).to receive(:add_transaction).with({:action => "withdraw", :amount => 1000, :date => "01/01/2020"}) { ["01/01/2020 || || 500.00 || 500.00"] }
-      expect(account.deposit(1000, "01/01/2020")).to eq(["01/01/2020 || || 1000.00 || 1000.00"])
+      allow(transaction_history).to receive(:add_transaction).with({ :action => "deposit", :amount => 1000, :date => "01/01/2020" }).and_return log
+      allow(transaction_history).to receive(:transaction_to_statement).with(transaction_deposit)
+      account.deposit(1000, "01/01/2020")
+      allow(transaction_history).to receive(:add_transaction).with({ :action => "withdraw", :amount => 500, :date => "02/01/2020" }).and_return log
+      allow(transaction_history).to receive(:transaction_to_statement).with(transaction_withdraw)
+      expect(account.withdraw(500, "02/01/2020")).to eq(log)
     end
 
   end
