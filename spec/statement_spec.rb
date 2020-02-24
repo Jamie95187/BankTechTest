@@ -17,7 +17,7 @@ describe Statement do
 
     it('should print a statement with one deposit of 1000 and one withdraw of 500') do
       allow(transaction_history).to receive(:log) { ["01/01/2020 || 1000.00 || || 1000.00", "02/01/2020 || || 500.00 || 500.00"] }
-      expect { statement.print_statement(transaction_history) }.to output("date || credit || debit || balance\n01/01/2020 || 1000.00 || || 1000.00\n02/01/2020 || || 500.00 || 500.00").to_stdout
+      expect { statement.print_statement(transaction_history) }.to output("date || credit || debit || balance\n02/01/2020 || || 500.00 || 500.00\n01/01/2020 || 1000.00 || || 1000.00").to_stdout
     end
   end
 

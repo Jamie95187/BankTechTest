@@ -34,8 +34,8 @@ The account class updates the balance after transactions have been made.
 
 | Objects | Methods |
 | --- | --- |
-| Account | update_balance |
-| | display_balance |
+| Account | deposit |
+| | withdraw |
 
 The transaction_history class stores the transactions that have been made.
 
@@ -44,38 +44,34 @@ The transaction_history class stores the transactions that have been made.
 | TransactionHistory | add_transaction |
 | | transaction_to_statement |
 
-The amount, time and action is held in this transaction class.
+The statement class displays the information onto the command line.
 
 | Objects | Methods |
 | --- | --- |
-| Transaction | |
-
-The system class displays the information onto the command line. The process method takes the arguments: action 'deposit/withdraw', amount for the transaction and the transaction_history object.
-
-| Objects | Methods |
-| --- | --- |
-| BankSystem | print_recent_history |
-| | process |
+| statement | print_statement |
 
 ## Running the program
 
 Go to the root directory and open `irb` in terminal. Load the files into the environment. You can load the files in by typing `irb -r './lib/bank'` at the root directory, or you can load the file in the `irb` environment by typing `require_relative './lib/bank'`. The program can be ran as follows:
 
 ```
-2.6.5 :001 > banksystem = BankSystem.new
- => #<BankSystem:0x00007faddfa73890 @transaction_class=Transaction>
-2.6.5 :002 > account = Account.new
- => #<Account:0x00007faddfa70410 @balance=0>
-2.6.5 :003 > transaction_history = TransactionHistory.new(account)
- => #<TransactionHistory:0x00007faddfa639b8 @account=#<Account:0x00007faddfa70410 @balance=0>, @log=[]>
-2.6.5 :004 > banksystem.process('deposit', 1000, transaction_history)
- => #<Transaction:0x00007faddfa5a5c0 @action="deposit", @time="29/01/2020", @amount=1000>
-2.6.5 :005 > banksystem.process('withdraw', 500, transaction_history)
- => #<Transaction:0x00007faddfa50e30 @action="withdraw", @time="29/01/2020", @amount=500>
-2.6.5 :006 > banksystem.print_statement(transaction_history)
+2.6.5 :001 > require_relative 'lib/bank.rb'
+ => true
+2.6.5 :002 > statement = Statement.new
+ => #<Statement:0x00007fe2bc1b9d00>
+2.6.5 :003 > account = Account.new
+ => #<Account:0x00007fe2bc1aa8f0 @transaction_history=#<TransactionHistory:0x00007fe2bc1aa8a0 @log=[], @balance=0>>
+2.6.5 :004 > account.deposit(1000, "10/01/2012")
+ => ["10/01/2012 || 1000.00 || || 1000.00"]
+2.6.5 :005 > account.deposit(2000, "13/01/2012")
+ => ["10/01/2012 || 1000.00 || || 1000.00", "13/01/2012 || 2000.00 || || 3000.00"]
+2.6.5 :006 > account.withdraw(500, "14/01/2012")
+ => ["10/01/2012 || 1000.00 || || 1000.00", "13/01/2012 || 2000.00 || || 3000.00", "14/01/2012 || || 500.00 || 2500.00"]
+2.6.5 :007 > statement.print_statement(account.transaction_history)
 date || credit || debit || balance
-29/01/2020 || || 500.00 || 500.00
-29/01/2020 || 1000.00 || || 1000.00
+14/01/2012 || || 500.00 || 2500.00
+13/01/2012 || 2000.00 || || 3000.00
+10/01/2012 || 1000.00 || || 1000.00
 ```
 
 ## User Stories
@@ -96,10 +92,6 @@ I would like to see how much balance I have in my account
 As a user,
 so that I can be sulk at my food expenditure
 I would like to see a number of my most recent transactions
-
-As a user,
-so that I won't have troubles with my finances
-I would like to be stopped from going into an overdraft
 ```
 
 ## Specification
