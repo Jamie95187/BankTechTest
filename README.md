@@ -2,7 +2,7 @@
 
 ## Overview
 
-A program ran in terminal which can be run in a ruby REPL such as irb in terminal. Users can display their transaction history after making deposits or withdrawals from their accounts.
+A program which can be ran in a ruby REPL such as irb in terminal. Users can display their transaction history after making deposits or withdrawals from their accounts.
 
 ## Installation
 
@@ -114,6 +114,6 @@ I would like to see a number of my most recent transactions
 ```
 date || credit || debit || balance
 14/01/2012 || || 500.00 || 2500.00
-13/01/2012 || 2000.00 || || 3000.00
+13/01/2012 || 2000.00 || || 3000.0
 10/01/2012 || 1000.00 || || 1000.00
 ```
