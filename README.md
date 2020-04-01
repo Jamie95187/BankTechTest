@@ -30,14 +30,14 @@ I decided to have four classes for this project and followed the TDD pattern of 
 
 ## Class/Method structure
 
-The account class updates the balance after transactions have been made.
+The account class adds a transaction to the transaction history log.
 
 | Objects | Methods |
 | --- | --- |
 | Account | deposit |
 | | withdraw |
 
-The transaction_history class stores the transactions that have been made.
+The transaction_history class stores the transactions that have been made into a log. Keeps track of the balance once the log has been updated.
 
 | Objects | Methods |
 | --- | --- |
